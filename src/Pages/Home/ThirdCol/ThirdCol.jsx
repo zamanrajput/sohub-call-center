@@ -10,10 +10,10 @@ const ThirdCol = () => {
             {/* 1st section */}
             <section>
                 <div className="bg-base-100 shadow-xl p-2 rounded">
-                    <div className="flex items-center justify-between">
-                        <div className="text-black py-2">
-                            <p>+1(412)288-3782</p>
-                            <div className='flex  items-center justify-center'>
+                    <div className="flex items-center justify-between gap-4">
+                        <div className="text-black py-2 w-1/4">
+                            <p className='text-xs'> +1(412)288-3782</p>
+                            <div className=' items-center justify-start flex'>
                                 <div>
                                     <BsFillTelephoneFill size="20px" className="text-black  bg-green-300 rounded-full mx-2 mt-2 p-1" />
                                 </div>
@@ -21,17 +21,17 @@ const ThirdCol = () => {
                             </div>
                         </div>
 
-                        <div className="">
-                            <button className="btn btn-sm bg-gray-200 text-black rounded-full  text-sm mx-1"><BsFillPauseFill size="15px" /> Hold</button>
-                            <button className="btn btn-sm bg-gray-200 text-black rounded-full  text-sm mx-1"><BsHeadset size="15px" /> Consult</button>
-                            <button className="btn btn-sm bg-gray-200 text-black rounded-full text-sm mx-1"><BsPersonFillUp size="15px" /> Transfer</button>
-                            <button className="btn btn-sm bg-gray-200 text-black rounded-full  text-sm mx-1"><BsPauseCircle size="15px" /> Pause Recording</button>
-                            <button className="btn btn-sm bg-red-600 text-white rounded-full  text-sm mx-1"><BsXCircle size="15px" /> End</button>
+                        <div className="flex flex-wrap gap-2">
+                            <button className="btn btn-sm bg-gray-200 text-black rounded-full  text-xs mx-1"><BsFillPauseFill size="15px" /> Hold</button>
+                            <button className="btn btn-sm bg-gray-200 text-black rounded-full  text-xs mx-1"><BsHeadset size="15px" /> Consult</button>
+                            <button className="btn btn-sm bg-gray-200 text-black rounded-full text-xs mx-1"><BsPersonFillUp size="15px" /> Transfer</button>
+                            <button className="btn btn-sm bg-gray-200 text-black rounded-full  text-xs mx-1"><BsPauseCircle size="15px" /> Pause Recording</button>
+                            <button className="btn btn-sm bg-red-600 text-white rounded-full  text-xs mx-1"><BsXCircle size="15px" /> End</button>
                         </div>
                     </div>
                     <hr />
                     <div>
-                        <div className='flex text-sm  items-center gap-5 p-2'>
+                        <div className='flex  flex-wrap text-sm  items-center gap-5 p-2'>
                             <div className='flex items-start justify-between gap-2'>
                                 <div>
                                     <p>Phone Number <BsLockFill size="15px" className='inline' /></p>
@@ -93,7 +93,7 @@ const ThirdCol = () => {
                         <div className='border rounded-md p-2 mt-2'>
                             <p className='font-bold'>Customer Informations</p>
                             <div>
-                                <div className="flex items-center justify-between">
+                                <div className="flex items-center justify-between gap-2">
                                     <div className="font-bold">
                                         <p>Michael Littlefood <BsPencil className='inline' /></p>
                                     </div>
@@ -138,18 +138,18 @@ const ThirdCol = () => {
                                     </div>
                                 </div>
                                 <div className="rounded-md p-2 mt-1">
-                                    <div className='flex gap-2 mt-3'>
+                                    <div className='flex flex-wrap gap-2 mt-3'>
                                         <div>
-                                            <button className="btn btn-sm"><BsFilter className="inline" /> Filters</button>
+                                            <button className="btn btn-sm text-xs"><BsFilter className="inline" /> Filters</button>
                                         </div>
                                         <div>
-                                            <button className="btn btn-sm rounded-full"><BsCheckLg className="inline" /> Last 30 Days</button>
+                                            <button className="btn btn-sm text-xs rounded-full"><BsCheckLg className="inline" /> Last 30 Days</button>
                                         </div>
                                         <div>
-                                            <button className="btn btn-sm rounded-full"><BsCheckLg className="inline" /> Contacts and Activities</button>
+                                            <button className="btn btn-sm text-xs rounded-full"><BsCheckLg className="inline" /> Contacts and Activities</button>
                                         </div>
                                         <div>
-                                            <button className="btn btn-sm rounded-full"><BsCheckLg className="inline" /> Voice</button>
+                                            <button className="btn btn-sm text-xs rounded-full"><BsCheckLg className="inline" /> Voice</button>
                                         </div>
                                     </div>
                                     {/* card   */}

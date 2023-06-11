@@ -5,18 +5,15 @@ import { BsPersonCircle , BsFillCheckCircleFill} from "react-icons/bs";
 
 const Navbar = () => {
     return (
-
-        <nav className="flex justify-between items-center bg-white px-2 py-1">
-            <button>
-                <img class="w-18 h-6 inline px-2" src={NavTitle} alt="" />
-                <h1 class="text-xl text-gray-800 font-bold inline">Sohub Call Center</h1>
+        <nav className="flex justify-between items-center gap-3 bg-white px-2  py-1">
+            <button className=''>
+            <img class="w-12 h-6 inline px-2" src={NavTitle} alt="" />
+                <h1 class="text-xl sm:text-lg text-gray-800 font-bold inline">Call Center</h1>
             </button>
-
             <div className="flex items-center">
-
-                <ul className="flex items-center space-x-6 ms-6">
+                <ul className="flex items-center space-x-4 ms-2">
                     <li>
-                        <BsFillTelephoneFill size="18px" />
+                        <BsFillTelephoneFill size="16px" />
                     </li>
                     <li>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -25,7 +22,7 @@ const Navbar = () => {
                     </li>
                 </ul>
                 <div className="">
-                    <ul className="menu menu-horizontal px-6">
+                    <ul className="menu menu-horizontal px-2">
                         <li tabIndex={0}>
                             <details>
                                 <summary className='px-2 w-48 border'><BsFillCheckCircleFill size="14px" className='text-green-700' />  Engaged</summary>
@@ -37,7 +34,7 @@ const Navbar = () => {
                         </li>
                     </ul>
                 </div>
-                <div>
+                <div className='pr-2'>
                     <BsPersonCircle size="22px" />
                 </div>
             </div>

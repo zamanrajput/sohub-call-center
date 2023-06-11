@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaRegComment } from "react-icons/fa";
-import { BsFillTelephoneFill , BsShare, BsTelephone,BsEnvelope,BsChat,BsTrash3} from "react-icons/bs";
+import { BsFillTelephoneFill, BsShare, BsTelephone, BsEnvelope, BsChat, BsTrash3 } from "react-icons/bs";
 const SecondCol = () => {
     return (
         <div>
@@ -35,31 +35,31 @@ const SecondCol = () => {
                     </div>
                 </div>
             </div>
-
+            <br />
             {/* 2nd section  */}
-            <div className='w-72' style={{ maxWidth: "500px", margin: "auto" }}>
-                <div class="" style={{ position: "absolute", bottom: "0px" }}>
-                    <div className='w-72 h-72 border bg-slate-100'>
-                        <div className='flex justify-around gap-2 mt-3 mb-2'>
-                            <div>
-                                <button className="btn btn-sm">All</button>
-                            </div>
+            <div className=''>
+                <div class="">
+                    <div className='w-auto h-72 border shadow-xl p-4 rounded bg-slate-100'>
+                        <div className='inline md:inline sm:inline px-2'>
+                            <button className="btn btn-sm">All</button>
+                        </div>
+                        <div className='inline-flex flex-wrap justify-around gap-2 mt-3 mb-2'>
                             <div>
                                 <button className="btn btn-sm rounded-full  bg-blue-100"><BsTelephone /> </button>
                             </div>
                             <div>
-                                <button className="btn btn-sm rounded-full  bg-blue-100"><BsChat/></button>
+                                <button className="btn btn-sm rounded-full  bg-blue-100"><BsChat /></button>
                             </div>
                             <div>
-                                <button className="btn btn-sm rounded-full  bg-blue-100"><BsShare/></button>
+                                <button className="btn btn-sm rounded-full  bg-blue-100"><BsShare /></button>
                             </div>
                             <div>
-                                <button className="btn btn-sm rounded-full  bg-blue-100"><BsEnvelope/></button>
+                                <button className="btn btn-sm rounded-full  bg-blue-100"><BsEnvelope /></button>
                             </div>
                         </div>
                         <hr />
                         <div className='flex justify-center items-center h-60'>
-                         <p><BsTrash3 size="80px"/> No History</p>
+                            <p><BsTrash3 size="80px" /> No History</p>
                         </div>
                     </div>
                 </div>
