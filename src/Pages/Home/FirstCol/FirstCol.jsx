@@ -6,9 +6,9 @@ import { FaQuestion } from "react-icons/fa";
 
 const FirstCol = () => {
     return (
-        <div className='max-w-screen-lg lg:h-screen  md:lg:h-screen m-auto'>
-            <div className="flex lg:flex-col md:flex-col justify-center lg:justify-between md:justify-between gap-6 items-center py-2">
-                <div>
+        <div className='max-w-screen-lg m-auto'>
+            <div className="flex sm:flex-col md:flex-col lg:flex-col justify-evenly lg:justify-between md:justify-between sm:justify-between gap-6 items-center py-2">
+                <div className='sm:top-1 md:top-1 lg:top-1'>
                     <div className="text-black bg-slate-200 p-4 rounded-full mt-1">
                         <FaHouseUser size="20px" />
                     </div>
@@ -18,7 +18,7 @@ const FirstCol = () => {
                     </div>
                 </div>
 
-                <div className='lg:absolute md:absolute lg:bottom-0 md:bottom-0'>
+                <div className='sm:bottom-0 md:bottom-0 lg:bottom-0'>
                     <div className="text-black bg-slate-200 p-4 rounded-full mt-2">
                         <FaCommentAlt size="20px" />
                     </div>

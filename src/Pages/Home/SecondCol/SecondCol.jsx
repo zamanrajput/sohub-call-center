@@ -5,7 +5,7 @@ const SecondCol = () => {
     return (
         <div>
             <div>
-                <div className="bg-base-100 shadow-xl p-4 rounded">
+                <div className="bg-base-100 shadow-xl p-4 rounded flex-wrap">
                     <div className="flex items-center justify-between">
                         <div className="text-black bg-green-300 rounded-full p-4">
                             <BsFillTelephoneFill size="15px" />

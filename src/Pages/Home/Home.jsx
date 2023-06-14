@@ -5,19 +5,32 @@ import ThirdCol from './thirdCol/thirdCol';
 
 const Home = () => {
     return (
-        <div className='grid md:grid-cols-12 sm:grid-cols-12 xm:grid-cols-12 gap-4 p-2 dark:bg-slate-100 '>
-            <div className='md:col-span-1 sm:col-span-2 xm:col-span-2  md:h-screen lg:h-screen border-gray-950  bg-white rounded'>
+        <div className='grid sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12  gap-2 p-2 dark:bg-slate-100 '>
+            <div className='sm:col-span-1 md:col-span-1 lg:col-span-1   border-gray-950  bg-white rounded'>
                <FirstCol></FirstCol>
             </div>
-            
-            <div className='md:col-span-3 sm:col-span-10 xm:col-span-10 md:h-screen lg:h-screen border-gray-950  bg-white rounded'>
+
+            <div className='sm:col-span-11 md:col-span-11 lg:col-span-3  border-gray-950  bg-white rounded'>
                 <SecondCol></SecondCol>
             </div>
-            
-            <div className='md:col-span-8 sm:col-span-12 xm:col-span-12 h-screen border-gray-950  bg-white rounded'>
+
+            <div className='sm:col-span-12 md:col-span-12 lg:col-span-8 h-screen border-gray-950  bg-white rounded'>
                 <ThirdCol></ThirdCol>
             </div>
         </div>
+        // <div className='grid sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12  gap-2 p-2 dark:bg-slate-100 '>
+        //     <div className='sm:col-span-1 md:col-span-1 lg:col-span-1  md:h-screen lg:h-screen border-gray-950  bg-white rounded'>
+        //         <FirstCol></FirstCol>
+        //     </div>
+        //     <div className='sm:col-span-11 md:col-span-11 lg:col-span-11 md:h-screen lg:h-screen'>
+        //         <div className='sm:col-span-11 md:col-span-11 lg:col-span-3 border-gray-950  bg-white rounded'>
+        //             <SecondCol></SecondCol>
+        //         </div>
+        //         <div className='sm:col-span-12 md:col-span-12 lg:col-span-8 h-screen border-gray-950  bg-white rounded'>
+        //             <ThirdCol></ThirdCol>
+        //         </div>
+        //     </div>
+        // </div>
     );
 };
 

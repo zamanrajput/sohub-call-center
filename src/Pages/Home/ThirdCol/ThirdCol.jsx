@@ -10,7 +10,7 @@ const ThirdCol = () => {
             {/* 1st section */}
             <section>
                 <div className="bg-base-100 shadow-xl p-2 rounded">
-                    <div className="flex items-center justify-between gap-4">
+                    <div className="flex items-center justify-between gap-4 my-2">
                         <div className="text-black py-2 w-1/4">
                             <p className='text-xs'> +1(412)288-3782</p>
                             <div className=' items-center justify-start flex'>
@@ -20,7 +20,6 @@ const ThirdCol = () => {
                                 <div className='mt-2'>00:01</div>
                             </div>
                         </div>
-
                         <div className="flex flex-wrap gap-2">
                             <button className="btn btn-sm bg-gray-200 text-black rounded-full  text-xs mx-1"><BsFillPauseFill size="15px" /> Hold</button>
                             <button className="btn btn-sm bg-gray-200 text-black rounded-full  text-xs mx-1"><BsHeadset size="15px" /> Consult</button>
@@ -47,7 +46,6 @@ const ThirdCol = () => {
                                         Country, San Farisisco, CA 94001.
                                     </p>
                                 </div>
-
                             </div>
                             <div className='flex items-start justify-between gap-2'>
                                 <div>
@@ -202,10 +200,6 @@ const ThirdCol = () => {
                     </div>
                 </div>
             </section>
-
-
-
-
         </div>
     );
 };
