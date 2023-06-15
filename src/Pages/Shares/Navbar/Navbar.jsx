@@ -1,5 +1,5 @@
 import React from 'react';
-import NavTitle from "../../../assets/Logo/Asset@4x.png";
+import NavTitle from "../../../assets/Logo/NavTitle.png";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { BsPersonCircle , BsFillCheckCircleFill} from "react-icons/bs";
 
@@ -7,8 +7,8 @@ const Navbar = () => {
     return (
         <nav className="flex justify-between items-center gap-3 bg-white px-2  py-1">
             <button className=''>
-            <img class="w-12 h-6 inline px-2" src={NavTitle} alt="" />
-                <h1 class="text-xl sm:text-lg text-gray-800 font-bold inline">Call Center</h1>
+            <img class="w-32 h-6 sm:h-6 md:h-8 lg:h-10 xl:h10 2xl:h-10 inline px-2" src={NavTitle} alt="" />
+                {/* <h1 class="text-xl sm:text-lg text-gray-800 font-bold inline">Call Center</h1> */}
             </button>
             <div className="flex items-center">
                 <ul className="flex items-center space-x-4 ms-2">

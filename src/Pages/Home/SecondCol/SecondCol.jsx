@@ -3,7 +3,7 @@ import { FaRegComment } from "react-icons/fa";
 import { BsFillTelephoneFill, BsShare, BsTelephone, BsEnvelope, BsChat, BsTrash3 } from "react-icons/bs";
 const SecondCol = () => {
     return (
-        <div>
+        <div className='grid grid-rows-2 gap-4 content-between'>
             <div>
                 <div className="bg-base-100 shadow-xl p-4 rounded flex-wrap">
                     <div className="flex items-center justify-between">
@@ -35,7 +35,7 @@ const SecondCol = () => {
                     </div>
                 </div>
             </div>
-            <br />
+            
             {/* 2nd section  */}
             <div className=''>
                 <div class="">
@@ -58,8 +58,9 @@ const SecondCol = () => {
                             </div>
                         </div>
                         <hr />
-                        <div className='flex justify-center items-center h-60'>
-                            <p><BsTrash3 size="80px" /> No History</p>
+                        <div className='flex flex-col justify-center items-center h-3/4'>
+                        <BsTrash3 size="40px" />
+                            <p> No History</p>
                         </div>
                     </div>
                 </div>
