@@ -27,10 +27,10 @@ const DialPad = () => {
         <div>
             {/* 1st Dialpad */}
             <div className=" rounded-xl text-center bg-gray-300 max-w-sm mx-auto mt-24 py-5">
-                <div className='flex w-auto h-16 bg-gray-100 rounded-lg border justify-center m-2 text-center items-center'>
+                <div className='flex w-auto h-12 bg-gray-100 rounded-lg border justify-center m-2 text-center items-center'>
                     <h5 className='border-none font-bold text-xl' type="number" name="" id=""> 123456789 </h5>
                 </div>
-
+<br />
                 <div className="flex flex-wrap">
                     <div className="w-1/3">
                         <button className="mx-2 rounded-full  w-12 h-12 text-xl text-gray-700 font-bold hover:bg-gray-400">1</button>
