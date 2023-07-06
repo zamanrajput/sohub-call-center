@@ -60,7 +60,7 @@ const FirstSection = () => {
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-row-reverse">
+                    <div className="flex flex-row-reverse">
                         <button className="btn btn-sm lowercase bg-gray-200 text-black rounded-full  text-sm mx-1">Save</button>
                         <button className="btn btn-sm lowercase bg-gray-200 text-black rounded-full  text-sm mx-1">Revert</button>
                     </div>

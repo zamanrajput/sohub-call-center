@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaRegComment } from "react-icons/fa";
 import { BsFillTelephoneFill, BsShare, BsTelephone, BsEnvelope, BsChat, BsTrash3 } from "react-icons/bs";
+import DialPad from '../Components/DialPad/DialPad';
 const SecondCol = () => {
     return (
         <div className='grid grid-rows-2 gap-4 content-between'>
@@ -34,11 +35,17 @@ const SecondCol = () => {
                         </div>
                     </div>
                 </div>
+                {/* 3rd section  */}
+                <div>
+                    <DialPad></DialPad>
+                </div>
             </div>
-            
+
+
+
             {/* 2nd section  */}
             <div className=''>
-                <div class="">
+                <div className="">
                     <div className='w-auto h-72 border shadow-xl p-4 rounded bg-slate-100'>
                         <div className='inline md:inline sm:inline px-2'>
                             <button className="btn btn-sm">All</button>
@@ -59,12 +66,13 @@ const SecondCol = () => {
                         </div>
                         <hr />
                         <div className='flex flex-col justify-center items-center h-3/4'>
-                        <BsTrash3 size="40px" />
+                            <BsTrash3 size="40px" />
                             <p> No History</p>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     );
 };
