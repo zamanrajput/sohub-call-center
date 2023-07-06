@@ -30,7 +30,8 @@ const DialPad = () => {
                 <div className='flex w-auto h-12 bg-gray-100 rounded-lg border justify-center m-2 text-center items-center'>
                     <h5 className='border-none font-bold text-xl' type="number" name="" id=""> 123456789 </h5>
                 </div>
-<br />
+                <hr />
+                <br />
                 <div className="flex flex-wrap">
                     <div className="w-1/3">
                         <button className="mx-2 rounded-full  w-12 h-12 text-xl text-gray-700 font-bold hover:bg-gray-400">1</button>
