@@ -21,10 +21,7 @@ const FirstCol = () => {
                     <div className="text-black bg-slate-200 p-4 rounded-full mt-2">
                         <FaMap size="20px" />
                     </div>
-                    
-                    <div id='dialPad' className="text-black bg-slate-200  rounded-full mt-2">
-                        <button onClick={handleClickDialPad} className='btn rounded-full'><MdDialpad size="20px" /></button>
-                    </div>
+                
                 </div>
                 <div className='sm:bottom-0 md:bottom-0 lg:bottom-0'>
                     <div className="text-black bg-slate-200 p-4 rounded-full mt-2">
