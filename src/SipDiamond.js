@@ -14,78 +14,28 @@ let AutoDeleteDefault = true; // For automatically created buddies (inbound and 
 let SubscribeBuddyAccept = "application/pidf+xml";
 let SubscribeBuddyEvent = "presence";
 let SubscribeBuddyExpires = parseInt("300");
-let profileDisplayPrefix = "";
-let profileDisplayPrefixSeparator = "";
 let NoAnswerTimeout = parseInt("120");
 let AutoAnswerEnabled = "0" === "1";
-let DoNotDisturbEnabled = "0" === "1";
 let CallWaitingEnabled = "1" === "1";
-let RecordAllCalls = "0" === "1";
-let StartVideoFullScreen = "1" === "1";
-let SelectRingingLine = "1" === "1";
-let UiMaxWidth = parseInt("1240");
-let UiThemeStyle = "system";
-let UiMessageLayout = "middle";
-let UiCustomConfigMenu = "0" === "1";
-let UiCustomDialButton = "0" === "1";
-let UiCustomSortAndFilterButton = "0" === "1";
-let UiCustom = "0" === "1";
-let UiCustomEditBuddy = "0" === "1";
-let UiCustomMediaSettings = "0" === "1";
-let UiCustomMessageAction = "0" === "1";
 let AutoGainControl = "1" === "1";
 let EchoCancellation = "1" === "1";
 let NoiseSuppression = "1" === "1";
-let MirrorVideo = "rotateY(180deg)";
 let maxFrameRate = "";
 let videoHeight = "";
 let MaxVideoBandwidth = parseInt("2048");
 let videoAspectRatio = "1.33";
-let NotificationsActive = "0" === "1";
-let StreamBuffer = parseInt("50");
-let MaxDataStoreDays = parseInt("0");
-let PosterJpegQuality = parseFloat("0.6");
-let VideoResampleSize = "HD";
-let RecordingVideoSize = "HD";
-let RecordingVideoFps = parseInt("12");
-let RecordingLayout = "them-pnp";
 let DidLength = parseInt("6");
 let MaxDidLength = parseInt("16");
-let DisplayDateFormat = "YYYY-MM-DD";
-let DisplayTimeFormat = "h:mm:ss A";
-let Language = "auto";
-let BuddySortBy = "activity";
-let SortByTypeOrder = "e|x|c";
-let BuddyAutoDeleteAtEnd = "0" === "1";
-let HideAutoDeleteBuddies = "0" === "1";
-let BuddyShowExtenNum = "0" === "1";
-let EnableTextMessaging = "1" === "1";
-let DisableFreeDial = "0" === "1";
-let DisableBuddies = "0" === "1";
-let EnableTransfer = "1" === "1";
-let EnableConference = "1" === "1";
-let AutoAnswerPolicy = "allow";
-let DoNotDisturbPolicy = "allow";
-let CallWaitingPolicy = "allow";
-let CallRecordingPolicy = "allow";
 let IntercomPolicy = "enabled";
-let EnableAccountSettings = "1" === "1";
-let EnableAppearanceSettings = "1" === "1";
-let EnableNotificationSettings = "1" === "1";
 let EnableAlphanumericDial = "0" === "1";
 let EnableVideoCalling = "1" === "1";
-let EnableTextExpressions = "1" === "1";
-let EnableTextDictate = "1" === "1";
 let EnableRingtone = "1" === "1";
-let MaxBuddies = parseInt("999");
-let MaxBuddyAge = parseInt("365");
 let profileUserID = username;
 let SubscribeToYourself = "0" == "1"; // Enable Subscribe to your own uri. (Useful to understand how other buddies see you.)
 
 let TransportConnectionTimeout = parseInt(15); // The timeout in seconds for the initial connection to make on the web socket port
 let BundlePolicy = "balanced"; // SDP Media Bundle: max-bundle | max-compat | balanced https://webrtcstandards.info/sdp-bundle/
 let IceStunCheckTimeout = 500; // Set amount of time in milliseconds to wait for the ICE/STUN server
-let ContactUserName = ""; // Optional name for contact header uri
 let userAgentStr = "Browser Phone "; //+appversion +     " (SIPJS - " +  sipjsversion +  ") " + navUserAgent // Set this to whatever you want.
 // let NoAnswerTimeout = 120; // Time in seconds before automatic Busy Here sent
 let IceStunServerJson = ""; // Sets the JSON string for ice Server. Default: [{ "urls": "stun:stun.l.google.com:19302" }] Must be https://developer.mozilla.org/en-US/docs/Web/API/RTCConfiguration/iceServers
@@ -188,83 +138,36 @@ function countSessions(id) {
 
   return rtn;
 }
-function formatShortDuration(seconds) {
-  var sec = Math.floor(parseFloat(seconds));
-  if (sec < 0) {
-    return sec;
-  } else if (sec >= 0 && sec < 60) {
-    return "00:" + (sec > 9 ? sec : "0" + sec);
-  } else if (sec >= 60 && sec < 60 * 60) {
-    // greater then a minute and less then an hour
-    var duration = moment.duration(sec, "seconds");
-    return (
-      (duration.minutes() > 9 ? duration.minutes() : "0" + duration.minutes()) +
-      ":" +
-      (duration.seconds() > 9 ? duration.seconds() : "0" + duration.seconds())
-    );
-  } else if (sec >= 60 * 60 && sec < 24 * 60 * 60) {
-    // greater than an hour and less then a day
-    var duration = moment.duration(sec, "seconds");
-    return (
-      (duration.hours() > 9 ? duration.hours() : "0" + duration.hours()) +
-      ":" +
-      (duration.minutes() > 9 ? duration.minutes() : "0" + duration.minutes()) +
-      ":" +
-      (duration.seconds() > 9 ? duration.seconds() : "0" + duration.seconds())
-    );
-  }
-  //  Otherwise.. this is just too long
-}
 
 // System variables
 // ================
-const instanceID = String(Date.now());
 let localDB = window.localStorage;
 let userAgent = null;
-let CanvasCollection = [];
 let Buddies = [];
-let selectedBuddy = null;
-let selectedLine = null;
-let windowObj = null;
-let alertObj = null;
-let confirmObj = null;
-let promptObj = null;
-let menuObj = null;
 let HasVideoDevice = false;
 let HasAudioDevice = false;
-let HasSpeakerDevice = false;
 let AudioinputDevices = [];
 let VideoinputDevices = [];
-let SpeakerDevices = [];
 let Lines = [];
 let lang = {};
 let audioBlobs = {};
 let newLineNumber = 1;
-let telNumericRegEx = /[^\d\*\#\+]/g;
-let telAlphanumericRegEx = /[^\da-zA-Z\*\#\+\-\_\.\!\~\'\(\)]/g;
+let telNumericRegEx = /[^\d*#+]/g;
+let telAlphanumericRegEx = /[^\da-zA-Z*#+-_.!~'()]/g;
 
-let settingsMicrophoneStream = null;
-let settingsMicrophoneStreamTrack = null;
-let settingsMicrophoneSoundMeter = null;
 
-let settingsVideoStream = null;
 
 //user config
 var domain = "voice.tolpar.com.bd";
-var username = "801";
+//over server is on websockets server, websockets working fine but not registering lemme run?ok run is these are okay?
+var username = "802";
 var password = "nahid54321";
-var au = username;
 var socketPort = 8089;
 var wspath = "/ws";
+var displayName ="802";
 
-function RemoveBuddy(buddy) {
-  // Check if you are on the phone etc
-  // CloseWindow();
-  // Confirm(lang.confirm_remove_buddy, lang.remove_buddy, function () {
-  //   DoRemoveBuddy(buddy);
-  //   UpdateBuddyList();
-  // });
-}
+//check these yes ok
+
 // function DoRemoveBuddy(buddy) {
 //   for (var b = 0; b < Buddies.length; b++) {
 //     if (Buddies[b].identity == buddy) {
@@ -289,63 +192,6 @@ function FindBuddyByDid(did) {
     }
   }
   return null;
-}
-function FindBuddyByExtNo(ExtNo) {
-  for (var b = 0; b < Buddies.length; b++) {
-    if (Buddies[b].ExtNo == ExtNo) return Buddies[b];
-  }
-  return null;
-}
-function SelectLine(lineNum) {
-  var lineObj = FindLineByNumber(lineNum);
-  if (lineObj == null) return;
-
-  var displayLineNumber = 0;
-  for (var l = 0; l < Lines.length; l++) {
-    if (Lines[l].LineNumber == lineObj.LineNumber) displayLineNumber = l + 1;
-    if (
-      Lines[l].IsSelected == true &&
-      Lines[l].LineNumber == lineObj.LineNumber
-    ) {
-      // Nothing to do, you re-selected the same buddy;
-      return;
-    }
-  }
-
-  console.log("Selecting Line : " + lineObj.LineNumber);
-
-  // Can only display one thing on the Right
-  // //".streamSelected").each(function () {
-  //   //this).prop("class", "stream");
-  // });
-  // //"#line-ui-" + lineObj.LineNumber).prop("class", "streamSelected");
-
-  // //"#line-ui-" + lineObj.LineNumber + "-DisplayLineNo").html(
-  //   '<i class="fa fa-phone"></i> ' + lang.line + " " + displayLineNumber
-  // );
-  // //"#line-ui-" + lineObj.LineNumber + "-LineIcon").html(displayLineNumber);
-
-  // Switch the SIP Sessions
-  SwitchLines(lineObj.LineNumber);
-
-  // Update Lines List
-  for (var l = 0; l < Lines.length; l++) {
-    var classStr =
-      Lines[l].LineNumber == lineObj.LineNumber ? "buddySelected" : "buddy";
-    if (Lines[l].SipSession != null)
-      classStr = Lines[l].SipSession.isOnHold
-        ? "buddyActiveCallHollding"
-        : "buddyActiveCall";
-
-    Lines[l].IsSelected = Lines[l].LineNumber == lineObj.LineNumber;
-  }
-  // Update Buddy List
-  for (var b = 0; b < Buddies.length; b++) {
-    Buddies[b].IsSelected = false;
-  }
-
-  // Change to Stream if in Narrow view
-  // UpdateUI();
 }
 export function holdSession() {
 
@@ -512,7 +358,6 @@ export function MuteSession() {
 
   if (lineObj == null || lineObj.SipSession == null) return;
 
-  var lineNum = lineObj.LineNumber;
   // //"#line-" + lineNum + "-btn-Unmute").show();
   // //"#line-" + lineNum + "-btn-Mute").hide();
 
@@ -610,78 +455,18 @@ console.log("endSession Called");
   clearObjs();
   // updateLineScroll(lineNum);
 }
-function SwitchLines(lineNum) {
-  // //each(userAgent.sessions, function (i, session) {
-  //   // All the other calls, not on hold
-  //   if (session.state == SessionState.Established) {
-  //     if (session.isOnHold == false && session.data.line != lineNum) {
-  //       holdSession(session.data.line);
-  //     }
-  //   }
-  //   session.data.IsCurrentCall = false;
-  // });
-
-  var lineObj = FindLineByNumber(lineNum);
-  if (lineObj != null && lineObj.SipSession != null) {
-    var session = lineObj.SipSession;
-    if (session.state == SessionState.Established) {
-      if (session.isOnHold == true) {
-        unholdSession(lineNum);
-      }
-    }
-    session.data.IsCurrentCall = true;
-  }
-  selectedLine = lineNum;
-}
-function FindBuddyByNumber(number) {
-  // Number could be: +XXXXXXXXXX
-  // Any special characters must be removed prior to adding
-  for (var b = 0; b < Buddies.length; b++) {
-    if (
-      Buddies[b].MobileNumber == number ||
-      Buddies[b].ContactNumber1 == number ||
-      Buddies[b].ContactNumber2 == number
-    ) {
-      return Buddies[b];
-    }
-  }
-  return null;
-}
-function FindBuddyByIdentity(identity) {
-  for (var b = 0; b < Buddies.length; b++) {
-    if (Buddies[b].identity == identity) return Buddies[b];
-  }
-  return null;
-}
-function FindBuddyByJid(jid) {
-  for (var b = 0; b < Buddies.length; b++) {
-    if (Buddies[b].jid == jid) return Buddies[b];
-  }
-  console.warn("Buddy not found on jid: " + jid);
-  return null;
-}
-function FindBuddyByObservedUser(SubscribeUser) {
-  for (var b = 0; b < Buddies.length; b++) {
-    if (Buddies[b].SubscribeUser == SubscribeUser) return Buddies[b];
-  }
-  return null;
-}
 var OnStatusChange;
 export function CreateUserAgent({  onStatusChange }) {
   PreloadAudioFiles();
   console.log("Creating User Agent...");
   onStatusChange("Connecting With Server");
   
-  var user = {
-    username:'802',
-    password:'nahid54321'
-  }
+
   
-  
-  username = user.username;
-  profileUserID = user.username;
+
+  profileUserID = username;
   var options = {
-    uri: UserAgent.makeURI("sip:" + user.username + "@" + domain),
+    uri: UserAgent.makeURI("sip:" + username + "@" + domain),
     transportOptions: {
       server: "wss://" + domain + ":" + socketPort + "" + wspath,
       traceSip: false,
@@ -703,10 +488,10 @@ export function CreateUserAgent({  onStatusChange }) {
       },
       iceGatheringTimeout: IceStunCheckTimeout,
     },
-    contactName: user.username,
-    displayName: user.displayName,
-    authorizationUsername: username,
-    authorizationPassword: user.password,
+    contactName: username,
+    displayName: displayName,
+    authorizationUsername:username,
+    authorizationPassword: password,
     hackIpInContact: IpInContact, // Asterisk should also be set to rewrite contact
     userAgentString: userAgentStr,
     autoStart: false,
@@ -719,7 +504,7 @@ export function CreateUserAgent({  onStatusChange }) {
       onInvite: function (sip) {
         ReceiveCall(sip);
       },
-      onMessage: function (sip) {
+      onMessage: function () {
         // ReceiveOutOfDialogMessage(sip);
       },
     },
@@ -737,12 +522,12 @@ export function CreateUserAgent({  onStatusChange }) {
   ) {
     try {
       options.contactParams = JSON.parse(RegisterContactParams);
-    } catch (e) { }
+    } catch (e) { console.log(e)}
   }
   if (WssInTransport) {
     try {
       options.contactParams.transport = "wss";
-    } catch (e) { }
+    } catch (e) {console.log(e) }
   }
 
   // Add (Hardcode) other RTCPeerConnection({ rtcConfiguration }) config dictionary options here
@@ -783,7 +568,7 @@ export function CreateUserAgent({  onStatusChange }) {
   var RegistererOptions = {
     expires: RegisterExpires,
     extraHeaders: [],
-    extraContactHeaderParams: [],
+    extraContactHeaderParams: [userAgent.contact.toString]//i think we can do something with this. can you please run the code. let me see the, see display two , you see?
   };
 
   // Added to the SIP Headers
@@ -799,7 +584,7 @@ export function CreateUserAgent({  onStatusChange }) {
           RegistererOptions.extraHeaders.push(key + ": " + value);
         }
       }
-    } catch (e) { }
+    } catch (e) {console.log(e) }
   }
 
   // Added to the contact AFTER the '>' (not permanent)
@@ -817,7 +602,7 @@ export function CreateUserAgent({  onStatusChange }) {
           RegistererOptions.extraContactHeaderParams.push(key + ":" + value);
         }
       }
-    } catch (e) { }
+    } catch (e) {console.log(e); }
   }
 
   userAgent.registerer = new Registerer(userAgent, RegistererOptions);
@@ -1027,7 +812,7 @@ function SelfSubscribe() {
     options
   );
   userAgent.selfSub.delegate = {
-    onNotify: function (sip) {
+    onNotify: function () {
       // ReceiveNotify(sip, true);
     },
   };
@@ -1054,7 +839,7 @@ function SubscribeVoicemail() {
     vmOptions
   );
   userAgent.voicemailSub.delegate = {
-    onNotify: function (sip) {
+    onNotify: function () {
       // VoicemailNotify(sip);
     },
   };
@@ -1089,7 +874,7 @@ function SubscribeBuddy(buddyObj) {
     blfSubscribe.data = {};
     blfSubscribe.data.buddyId = buddyObj.identity;
     blfSubscribe.delegate = {
-      onNotify: function (sip) {
+      onNotify: function () {
         // ReceiveNotify(sip, false);
       },
     };
@@ -1622,9 +1407,6 @@ function VideoCall(lineObj, dialledNumber, extraHeaders) {
     "YYYY-MM-DD HH:mm:ss UTC"
   );
   lineObj.SipSession.data.callTimer = window.setInterval(function () {
-    var now = moment.utc();
-    var duration = moment.duration(now.diff(startTime));
-    var timeStr = formatShortDuration(duration.asSeconds());
   }, 1000);
   lineObj.SipSession.data.VideoSourceDevice = getVideoSrcID();
   lineObj.SipSession.data.AudioSourceDevice = getAudioSrcID();
@@ -1896,22 +1678,6 @@ function MakeBuddy(
   return buddyObj;
 }
 
-function UnsubscribeBuddy(buddyObj) {
-  console.log("Unsubscribe: ", buddyObj.identity);
-  if (buddyObj.type == "extension" || buddyObj.type == "xmpp") {
-    if (userAgent && userAgent.BlfSubs && userAgent.BlfSubs.length > 0) {
-      for (var blf = 0; blf < userAgent.BlfSubs.length; blf++) {
-        var blfSubscribe = userAgent.BlfSubs[blf];
-        if (blfSubscribe.data.buddyId == buddyObj.identity) {
-          console.log("Subscription found, removing: ", buddyObj.identity);
-          UnsubscribeBlf(userAgent.BlfSubs[blf]);
-          userAgent.BlfSubs.splice(blf, 1);
-          break;
-        }
-      }
-    }
-  }
-}
 
 function onRegistered() {
   // This code fires on re-register after session timeout
@@ -2219,7 +1985,7 @@ function onInviteProgress(lineObj, response) {
       var earlyMedia = new Audio(soundFile.blob);
       earlyMedia.preload = "auto";
       earlyMedia.loop = true;
-      earlyMedia.oncanplaythrough = function (e) {
+      earlyMedia.oncanplaythrough = function () {
         if (
           typeof earlyMedia.sinkId !== "undefined" &&
           getAudioOutputID() != "default"
@@ -2300,7 +2066,7 @@ function teardownSession(lineObj) {
       .then(function () {
         session.data.childsession = null;
       })
-      .catch(function (error) {
+      .catch(function () {
         session.data.childsession = null;
         // Suppress message
       });
@@ -2449,7 +2215,6 @@ function ReceiveCall(session) {
     }
   }
 
-  var startTime =utcDateNow;
 
   // Create the line and add the session so we can answer or reject it.
   newLineNumber = newLineNumber + 1;
@@ -2698,7 +2463,7 @@ function ReceiveCall(session) {
       var ringer = new Audio(audioBlobs.CallWaiting.blob);
       ringer.preload = "auto";
       ringer.loop = false;
-      ringer.oncanplaythrough = function (e) {
+      ringer.oncanplaythrough = function () {
         if (
           typeof ringer.sinkId !== "undefined" &&
           getRingerOutputID() != "default"
@@ -2729,7 +2494,7 @@ function ReceiveCall(session) {
       var ringer = new Audio(audioBlobs.Ringtone.blob);
       ringer.preload = "auto";
       ringer.loop = true;
-      ringer.oncanplaythrough = function (e) {
+      ringer.oncanplaythrough = function () {
         if (
           typeof ringer.sinkId !== "undefined" &&
           getRingerOutputID() != "default"
@@ -3297,7 +3062,7 @@ function onSessionDescriptionHandlerCreated(
   if (sdh) {
     if (sdh.peerConnection) {
       // console.log(sdh);
-      sdh.peerConnection.ontrack = function (event) {
+      sdh.peerConnection.ontrack = function () {
         // console.log(event);
         onTrackAddedEvent(lineObj, includeVideo);
       };
@@ -3356,7 +3121,7 @@ function onTrackAddedEvent(lineObj, includeVideo) {
   // Attach Audio
   if (remoteAudioStream.getAudioTracks().length >= 1) {
     remoteAudio.srcObject = remoteAudioStream;
-    remoteAudio.onloadedmetadata = function (e) {
+    remoteAudio.onloadedmetadata = function () {
       if (typeof remoteAudio.sinkId !== "undefined") {
         remoteAudio
           .setSinkId(getAudioOutputID())
